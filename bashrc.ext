@@ -1,0 +1,72 @@
+# begin .bashrc.ext
+[ -e $HOME/.dbgdot ] && echo "entering .bashrc.ext"
+# Alias
+alias gi='module swap PrgEnv-gnu PrgEnv-intel'
+alias ig='module swap PrgEnv-intel  PrgEnv-gnu'
+alias grrr='echo "Finished Job" | mailx -s "Make Done" robotpwns@gmail.com'
+alias ramses1d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses1d'
+alias ramses2d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses2d'
+alias ramses3d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses3d'
+alias halo='cd /project/projectdirs/astro250/doris/halo/halo_find'
+alias dir='ls -F -s -hâ'
+alias la='ls -a -F -sâ'
+alias lsd='ls -F|grep /â'
+alias athena='/global/homes/d/dorislee/athena4.2/bin/athena'
+alias configure='/global/homes/d/dorislee/athena4.2/configure' 
+alias sagent='eval "$(ssh-agent -s)";ssh-add ~/.ssh/id_rsa_github'
+alias python='/global/homes/d/dorislee/anaconda/bin/python'
+#umask 002 
+umask 022
+if [ $NERSC_HOST == "carver","hopper","edison" ]
+then
+HOSTNAME=`uname -n`
+export HOSTNAME MANPATH
+PS1='[PWD]$'
+fi
+
+#ssh by pass
+#if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+#  eval `ssh-agent`
+#  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+#fi
+#export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+#ssh-add -l | grep "The agent has no identities" && ssh-add
+#Make sure you are not on the first login node (since that's the grid access node, so slow..)
+#if [ "$NERSC_HOST" == "edison" ]
+# then
+#   if [ "$HOSTNAME" = "edison01" ]
+#   then
+#     ssh edison04
+#   fi
+# fi
+# This is bad for the sshfs because it seems like you can only mount a virtual disk on edison login node 1
+#module load python 
+PYTHONPATH=/global/homes/d/dorislee/anaconda/bin
+
+ if [ "$NERSC_HOST" == "hopper" ]
+ then
+ 	alias qs='qstat -u dorislee'
+	alias qss='qstat.serial -u dorislee'
+	alias qint='qsub -I -l mppwidth=24'
+	alias qint48='qsub -I -l mppwidth=48'
+
+ elif  [ "$NERSC_HOST" == "edison" ]
+ then 
+	alias qs='qstat -u dorislee'
+	alias qss='qstat.serial -u dorislee'
+	alias qint='qsub -I -l mppwidth=24'
+	alias qint48='qsub -I -l mppwidth=48'
+
+ elif  [ "$NERSC_HOST" == "cori" ]
+ then
+	:	
+	alias sqss='sqs -u dorislee'
+	alias qint='salloc -N 1 -p debug -t 00:30:00' #request one node
+	alias qint2='salloc -N 2 -p debug -t 00:30:00' #request two node
+	alias qsub='sbatch'
+	alias qdel='scancel'
+ fi
+
+
+[ -e $HOME/.dbgdot ] && echo "exiting .bashrc.ext"
+# end .bashrc.ext

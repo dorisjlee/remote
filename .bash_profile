@@ -1,0 +1,46 @@
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
+
+PATH=$PATH:$HOME/Montage_v3.3/bin:$HOME/Desktop/StarFormation/ramses/trunk/ramses/bin:$HOME/Desktop/Princeton_USRP/athena4.2/bin:$HOME/Desktop/Princeton_USRP/athena4.2/
+source  /usr/local/scisoft/bin/Setup.bash
+# Enabling virtualenvwrapper at startup
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+hack_path="/Users/dorislee/Desktop/PersonalProj/hack-life/scripts/"
+#add [%an] for printing also the name of the person who did the commit (removed because mostly work on my own repo anyways)
+alias hacklife='cd /Users/dorislee/Desktop/PersonalProj/hack-life/scripts/'
+alias startup='python $hack_path/startup.py &'
+alias podomoro='python $hack_path/timer.py 30 &'
+alias lsd='ls -F|grep /'
+alias ls='ls -F'
+alias ..='cd ..'
+alias l='ls'
+alias rc3='cd /Users/dorislee/Desktop/GSoC2014/workarea-rc3-project/pipeline'
+#Git Alias
+alias website_update='cd PersonalProj/mygithubpage/;git add . ; git commit -m "update"; git push'
+alias glog="git log --pretty=format:'%h %ad | %s%d ' --graph --date=short --since='31 days ago'"
+alias gs='git status '
+alias ga='git add .'
+alias gb='git branch '
+alias gc='git commit -m'
+alias gd='git diff'
+alias push='git push'
+alias pull='git pull'
+alias go='git checkout '
+#Remote Machines
+#-A enable forwarding of ssh keys to remote machine if the ssh keys are copied over to .ssh/
+alias hopper='ssh -A -Y hopper.nersc.gov'
+alias edison='ssh -A -Y edison.nersc.gov'
+alias cori='ssh -A -Y cori.nersc.gov'
+alias carver='ssh -A -Y carver.nersc.gov'
+alias ay='ssh dlee@ugastro.berkeley.edu'
+alias boss='ssh -Y dorislee@riemann.lbl.gov'
+alias cct='ssh  doris@192.168.169.13'
+alias amazon='cd Desktop;ssh -i rc3.pem ec2-user@54.191.66.196'
+alias bigdog='ssh doris@bigdog.astro.illinois.edu'
+alias charon='ssh -X -Y dorislee@charon.astro.princeton.edu'
+alias p2='workon py27dev'
+alias p3='workon py34dev'
+alias pb='ipython notebook'
