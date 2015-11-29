@@ -1,0 +1,6 @@
+*.txt
+*.err
+*.out
+*.ER
+*.OU
+.ipynb_checkpoints/*

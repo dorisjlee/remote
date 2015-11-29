@@ -1,9 +1,6 @@
 # begin .bashrc.ext
 [ -e $HOME/.dbgdot ] && echo "entering .bashrc.ext"
-#PATH=/opt/cray/rca/1.0.0-2.0502.57212.2.56.ari/bin:/opt/cray/alps/5.2.3-2.0502.9295.14.14.ari/sbin:/opt/cray/alps/5.2.3-2.0502.9295.14.14.ari/bin:/opt/cray/dvs/2.5_0.9.0-1.0502.1958.2.55.ari/bin:/opt/cray/xpmem/0.1-2.0502.57015.1.15.ari/bin:/opt/cray/pmi/5.0.6-1.0000.10439.140.2.ari/bin:/opt/cray/ugni/6.0-1.0502.10245.9.9.ari/bin:/opt/cray/udreg/2.3.2-1.0502.9889.2.20.ari/bin:/opt/gcc/4.9.2/bin:/usr/common/usg/bin:/usr/common/mss/bin:/usr/common/nsg/bin:/opt/moab/8.0.1/bin:/opt/moab/8.0.1/sbin:/opt/torque/5.0.1/sbin:/opt/torque/5.0.1/bin:/opt/cray/mpt/7.2.1/gni/bin:/opt/cray/craype/2.3.1/bin:/opt/cray/switch/1.0-1.0502.57058.1.58.ari/bin:/opt/cray/eslogin/eswrap/1.1.0-1.020200.1130.0/bin:/usr/syscom/nsg/sbin:/usr/syscom/nsg/bin:/opt/modules/3.2.10.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/usr/lib/qt3/bin:/opt/cray/bin
-#PATH=$PATH:/global/scratch2/sd/dorislee/Montage_v3.3/bin
 # Alias
-alias qint48='qsub -I -l mppwidth=48'
 alias gi='module swap PrgEnv-gnu PrgEnv-intel'
 alias ig='module swap PrgEnv-intel  PrgEnv-gnu'
 alias grrr='echo "Finished Job" | mailx -s "Make Done" robotpwns@gmail.com'
@@ -11,12 +8,9 @@ alias ramses1d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses1d'
 alias ramses2d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses2d'
 alias ramses3d='/global/homes/d/dorislee/ramses/trunk/ramses/bin/ramses3d'
 alias halo='cd /project/projectdirs/astro250/doris/halo/halo_find'
-alias qs='qstat -u dorislee'
-alias qss='qstat.serial -u dorislee'
 alias dir='ls -F -s -hâ'
 alias la='ls -a -F -sâ'
 alias lsd='ls -F|grep /â'
-alias qint='qsub -I -l mppwidth=24'
 alias athena='/global/homes/d/dorislee/athena4.2/bin/athena'
 alias configure='/global/homes/d/dorislee/athena4.2/configure' 
 alias sagent='eval "$(ssh-agent -s)";ssh-add ~/.ssh/id_rsa_github'
@@ -51,19 +45,26 @@ PYTHONPATH=/global/homes/d/dorislee/anaconda/bin
 
  if [ "$NERSC_HOST" == "hopper" ]
  then
- 	#module swap PrgEnv-pgi PrgEnv-intel
-	#module swap PrgEnv-pgi PrgEnv-gnu
-	#PATH=$PATH:/global/homes/d/dorislee/hopper_scratch/Montage_v3.3
-	PATH=$PATH:/global/homes/d/dorislee/Montage_v3.3/bin
+ 	alias qs='qstat -u dorislee'
+	alias qss='qstat.serial -u dorislee'
+	alias qint='qsub -I -l mppwidth=24'
+	alias qint48='qsub -I -l mppwidth=48'
+        alias dellots="python ~/scripts/delete_scal_test_jobs.py "
  elif  [ "$NERSC_HOST" == "edison" ]
  then 
-	#module swap PrgEnv-intel PrgEnv-gnu
-	PATH=$PATH:/global/scratch2/sd/dorislee/Montage_v3.3/bin
+	alias qs='qstat -u dorislee'
+	alias qss='qstat.serial -u dorislee'
+	alias qint='qsub -I -l mppwidth=24'
+	alias qint48='qsub -I -l mppwidth=48'
+	alias dellots="python ~/scripts/delete_scal_test_jobs.py "
  elif  [ "$NERSC_HOST" == "cori" ]
- then
-	:	
-	#module swap pgi gcc
-	#module swap openmpi openmpi-gcc
+ then	
+	alias qs='sqs -u dorislee'
+	alias qint='salloc -N 1 -p debug -t 00:30:00' #request one node (36 cores)
+	alias qint2='salloc -N 2 -p debug -t 00:30:00' #request two node
+	alias qsub='sbatch'
+	alias qdel='scancel'
+        alias dellots="python ~/delete_scal_test_jobs_cori.py" 
  fi
 
 
