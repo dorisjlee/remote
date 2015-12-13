@@ -41,8 +41,7 @@ fi
 # fi
 # This is bad for the sshfs because it seems like you can only mount a virtual disk on edison login node 1
 #module load python 
-PYTHONPATH=/global/homes/d/dorislee/anaconda/bin
-
+PYTHONPATH=/global/homes/d/dorislee/anaconda/lib/python2.7/site-packages:/global/homes/d/dorislee/anaconda/bin
  if [ "$NERSC_HOST" == "hopper" ]
  then
  	alias qs='qstat -u dorislee'
@@ -64,7 +63,8 @@ PYTHONPATH=/global/homes/d/dorislee/anaconda/bin
 	alias qint2='salloc -N 2 -p debug -t 00:30:00' #request two node
 	alias qsub='sbatch'
 	alias qdel='scancel'
-        alias dellots="python ~/delete_scal_test_jobs_cori.py" 
+	alias qhold='scontrol hold'
+        alias dellots="python ~/scripts/delete_scal_test_jobs_cori.py" 
  fi
 
 
