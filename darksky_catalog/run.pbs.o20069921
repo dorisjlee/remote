@@ -1,0 +1,18 @@
+
+ + --------------------------------------------------------------------------
+ +        Job name: run.pbs
+ +          Job Id: 20069921.hopque01
+ +          System: hopper
+ +     Queued Time: Sat Nov 28 12:15:40 2015
+ +      Start Time: Sat Nov 28 12:16:47 2015
+ + Completion Time: Sat Nov 28 12:16:48 2015
+ +            User: dorislee
+ +        MOM Host: nid04942
+ +           Queue: debug
+ +  Req. Resources: mppnodect=1,mppnppn=1,mppwidth=1,walltime=00:30:00
+ +  Used Resources: cput=00:00:00,energy_used=0,mem=0kb,vmem=0kb,walltime=00:00:04
+ +     Acct String: m2218
+ +   PBS_O_WORKDIR: /global/project/projectdirs/astro250/doris/halo/darksky_catalog
+ +     Submit Args: run.pbs
+ + --------------------------------------------------------------------------
+
