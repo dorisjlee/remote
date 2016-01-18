@@ -1,3 +1,4 @@
+#.bash profile for local (Macbook) 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 
@@ -13,6 +14,10 @@ hack_path="/Users/dorislee/Desktop/PersonalProj/hack-life/scripts/"
 alias hacklife='cd /Users/dorislee/Desktop/PersonalProj/hack-life/scripts/'
 alias startup='python $hack_path/startup.py &'
 alias podomoro='python $hack_path/timer.py 30 &'
+diary_path='/Users/dorislee/Desktop/PersonalProj/diary.noindex/'
+alias diary='python $diary_path/diary.py new '
+research_notes_path='/Users/dorislee/Desktop/Spring2016/CS_self_study/research_diary'
+alias note='python $research_notes_path/research_diary.py new'
 alias lsd='ls -F|grep /'
 alias ls='ls -F'
 alias ..='cd ..'
@@ -44,3 +49,10 @@ alias charon='ssh -X -Y dorislee@charon.astro.princeton.edu'
 alias p2='workon py27dev'
 alias p3='workon py34dev'
 alias pb='ipython notebook'
+#Mounting virtual disk remotely onto NERSC machines 
+alias mount_proj="mkdir projects;sshfs dorislee@cori.nersc.gov:/project/projectdirs/astro250/doris  projects -o auto_cache,defer_permissions,noappledouble"
+alias unmount_proj="diskutil unmount force projects/;rm -r projects/"
+alias sf="mkdir projects;sshfs dorislee@cori.nersc.gov:/project/projectdirs/astro250/doris/ projects -o auto_cache,defer_permissions,noappledouble;cd projects/ ;p2;pb"
+
+# added by Anaconda3 2.4.1 installer
+export PATH="/Users/dorislee/anaconda/bin:$PATH"
