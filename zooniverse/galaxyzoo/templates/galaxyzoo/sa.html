@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type= "text/css" href="{% static 'galaxyzoo/style.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <title>Galaxt Zoo</title>
+  </head>
+  <body>
+    <div id="navigation">
+      <ul style="width:auto;">
+        <li>
+          Classify
+        </li>
+        <li>
+          Story
+        </li>
+        <li>
+          Science
+        </li>
+        <li class="logo">
+          <img src="{% static "galaxyzoo/images/logo.png" %}" alt="Galaxy Zoo">
+        </li>
+        <li>
+          Discuss
+        </li>
+        <li>
+          Profile
+        </li>
+        <li>
+          Language
+        </li>
+      </ul>
+    </div>
+    <div id="main">
+      <div id="classify">
+        <div id="galaxy">
+          <img src="{% static "galaxyzoo/images/15.png" %}" alt="Galaxy">
+        </div>
+        <div id= "tree">
+          <div id="top">
+              <h1 class="heading">Classify</h1>
+              <ul class="bottons"style="list-style:none">
+                <li class="right">
+                  <img src="{% static "galaxyzoo/images/Examples.png" %}" alt="examples">
+                </li>
+                <li class="right">
+                  <a href="{% url 'galaxyzoo:restart' 3 %}"><img src="{% static "galaxyzoo/images/Restart.png" %}" alt="restart"></a>
+                </li>
+                <li class="left">
+                  <img src="{% static "galaxyzoo/images/DECaLs.png" %}" alt="decals">
+                </li>
+                <li class="left">
+                  <img src="{% static "galaxyzoo/images/Invert.png" %}" alt="invert">
+                </li>
+              </ul>
+          </div>
+          <div class="direction">
+            Note: Please always classify the galaxy in the center of the image.
+          </div>
+          <div class="question">
+            <h3>Spiral</h3>
+            <h1>{{ sa.question_text }}</h1>
+              {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+              <div>
+                <form action="{% url 'galaxyzoo:to_sa_num' sa.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Tight" />
+                    <input type="submit" value="Medium Loose" />
+                    <input type="submit" value="Loose" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </dov>
+    </div>
+  </body>
+</html>
+
