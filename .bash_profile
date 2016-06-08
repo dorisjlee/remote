@@ -1,4 +1,11 @@
+#export SPARK_HOME=/Users/dorislee/Desktop/BioVis/spark-1.5.2-bin-hadoop2.4/
+#export SPARK_HOME=/Users/dorislee/Desktop/LBNL/spark-1.6.1-bin-without-hadoop
+export SPARK_HOME=/Users/dorislee/Desktop/LBNL/spark-1.6.1
+export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$SPARK_HOME/python/lib/py4j-0.9-src.zip:$PYTHONPATH
 #.bash profile for local (Macbook) 
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 
@@ -9,17 +16,23 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper_lazy.sh
+# HackLife Scripts
 hack_path="/Users/dorislee/Desktop/PersonalProj/hack-life/scripts/"
 #add [%an] for printing also the name of the person who did the commit (removed because mostly work on my own repo anyways)
 alias hacklife='cd /Users/dorislee/Desktop/PersonalProj/hack-life/scripts/'
 alias startup='python $hack_path/startup.py &'
 alias podomoro='python $hack_path/timer.py 30 &'
+# Diary Scripts
 diary_path='/Users/dorislee/Desktop/PersonalProj/diary.noindex/'
 alias diary='python $diary_path/diary.py new '
-research_notes_path='/Users/dorislee/Desktop/Spring2016/CS_self_study/research_diary'
+# Research Diary Scripts
+research_notes_path='/Users/dorislee/Desktop/PersonalProj/research_diary'
 alias note='python $research_notes_path/research_diary.py new'
+#alias organize='python $research_notes_path/organize.py'
+alias organize='function _organize(){ python $research_notes_path/organize.py  $1 $2 $3 ;};_organize'
+alias bsh='vim ~/.bash_profile;source ~/.bash_profile'
 alias lsd='ls -F|grep /'
-alias ls='ls -F'
+alias ls='ls -GFh'
 alias ..='cd ..'
 alias l='ls'
 alias rc3='cd /Users/dorislee/Desktop/GSoC2014/workarea-rc3-project/pipeline'
@@ -49,7 +62,13 @@ alias charon='ssh -X -Y dorislee@charon.astro.princeton.edu'
 alias p2='workon py27dev'
 alias p3='workon py34dev'
 alias pb='ipython notebook'
+#alias pbs='ipython notebook --profile=pyspark'
+alias pbs='IPYTHON_OPTS="notebook" $SPARK_HOME/bin/pyspark'
+alias crowdclass='ssh dorislee0309@ssh.pythonanywhere.com'
+alias gz='ssh dorislee@ssh.pythonanywhere.com'
 #Mounting virtual disk remotely onto NERSC machines 
+alias mount_home="mkdir home;sshfs dorislee@cori.nersc.gov:/global/homes/d/dorislee/ home  -o auto_cache,defer_permissions,noappledouble"
+alias unmount_home="diskutil unmount force home/;rm -r home/"
 alias mount_proj="mkdir projects;sshfs dorislee@cori.nersc.gov:/project/projectdirs/astro250/doris  projects -o auto_cache,defer_permissions,noappledouble"
 alias unmount_proj="diskutil unmount force projects/;rm -r projects/"
 alias sf="mkdir projects;sshfs dorislee@cori.nersc.gov:/project/projectdirs/astro250/doris/ projects -o auto_cache,defer_permissions,noappledouble;cd projects/ ;p2;pb"
